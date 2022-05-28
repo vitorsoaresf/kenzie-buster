@@ -19,7 +19,7 @@ export class Stock {
   quantity: number;
 
   @Column("numeric")
-  price: string;
+  price: number;
 
   constructor() {
     if (!this.id) {

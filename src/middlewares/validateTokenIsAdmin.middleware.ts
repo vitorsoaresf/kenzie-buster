@@ -11,9 +11,8 @@ const validateTokenIsAdmin = async (
   if (isAdmin) {
     const token: string | undefined = req.headers.authorization?.split(" ")[1];
 
-    console.log("is ", token);
     if (!token) {
-      return res.status(401).json({ error: "missing admin permision" });
+      return res.status(401).json({ error: "missing authorization permision" });
     }
 
     return verify(
@@ -21,10 +20,15 @@ const validateTokenIsAdmin = async (
       process.env.SECRET_KEY,
       (err: VerifyErrors, decoded: string | JwtPayload) => {
         if (err) {
-          return "erro";
+          return {
+            error: {
+              name: "JsonWebTokenError",
+              message: "jwt malformed",
+            },
+          };
         }
         // @ts-ignore
-        if (decoded.isAdmin) {
+        if (decoded["isAdmin"]) {
           req.decoded = decoded as User;
           return next();
         }

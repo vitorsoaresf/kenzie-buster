@@ -24,9 +24,9 @@ export class DVD {
   @ManyToOne((type) => Cart, (cart) => cart.dvds)
   cart: Cart;
 
-
   @OneToOne((type) => Stock, {
     eager: true,
+    onDelete: "CASCADE",
   })
   @JoinColumn()
   stock: Stock;
