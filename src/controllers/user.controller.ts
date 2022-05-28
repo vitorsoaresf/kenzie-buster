@@ -1,5 +1,13 @@
 import { Request, Response } from "express";
+import { userService } from "../services";
 
-const myController = async (req: Request, res: Response) => {};
+class UserController {
+  POST_user = async (req: Request, res: Response) => {
+    const user = await userService.create_user(req.body);
 
-export const myController;
+    return res.json(user).status(201)
+
+  };
+}
+
+export default new UserController();

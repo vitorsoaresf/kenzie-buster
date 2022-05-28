@@ -1,3 +1,8 @@
 import { Express } from "express";
+import userRouter from "./user.routes";
 
-export const appRoutes = (app: Express) => {};
+const appRoutes = (app: Express) => {
+  app.use("/users", userRouter);
+};
+
+export default appRoutes;
