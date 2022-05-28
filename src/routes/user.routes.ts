@@ -1,5 +1,14 @@
 import { Router } from "express";
 import { userController } from "../controllers";
+import verifyIsAdmin from "../middlewares/verifyIsAdmin.middleware";
+import validadeUserSchema from "../middlewares/validateUserSchema.middleware";
+// import isAdmin from "../middlewares/isAdmin.middleware";
+import validateToken from "../middlewares/validateToken.middleware";
+import verifyUserExists from "../middlewares/verifyUserExists.middleware";
+import { userCreateSchema } from "../schemas/user/userCreate.schema";
+import userLoginSchema from "../schemas/user/userLogin.schema";
+import validateTokenIsAdmin from "../middlewares/validateTokenIsAdmin.middleware";
+import getByIdOr404 from "../middlewares/getByIdOr404.middleware";
 // import { validateSchema, verifyUserExists } from "../middlewares";
 // import { createUserSchema } from "../schemas/user/createUser.schema";
 // import loginUserSchema from "../schemas/user/loginUser.schema";
@@ -12,8 +21,18 @@ const userRouter = Router();
 //   userController.loginUser
 // );
 userRouter.post(
+  "/login",
+  validadeUserSchema(userLoginSchema),
+  getByIdOr404,
+  userController.LOGIN_USER
+);
+userRouter.post(
   "/register",
-  userController.POST_user
+  validadeUserSchema(userCreateSchema),
+  verifyUserExists,
+  validateTokenIsAdmin,
+  userController.POST_CREATE_USER
+  // isAdmin,
   //   validateSchema(createUserSchema),
   //   verifyUserExists,
 );

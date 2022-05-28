@@ -1,9 +1,8 @@
 import * as yup from "yup";
 
-const userCreateSchema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string().email().lowercase().required(),
-  isAdmin: yup.boolean().default(false).optional(),
+const loginUserSchema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().required(),
 });
 
-export { userCreateSchema };
+export { loginUserSchema };

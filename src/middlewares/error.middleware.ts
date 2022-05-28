@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { ErrorHandler } from "../errors";
 import { AppError } from "../errors/appError";
 
 export const errorMiddleware = (
@@ -13,6 +14,10 @@ export const errorMiddleware = (
       code: err.statusCode,
       message: err.message,
     });
+  }
+
+  if (err instanceof ErrorHandler) {
+    return response.status(err.statusCode).json({ message: err.message });
   }
 
   console.error(err);
