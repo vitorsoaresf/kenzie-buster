@@ -19,7 +19,7 @@ class DvdRepo implements IDvdRepo {
   all = async () => await this.ormRepo.find();
 
   findOne = async (payload: object) => {
-    return await this.ormRepo.findOneBy({ ...payload }) || {} as DVD;
+    return (await this.ormRepo.findOneBy({ ...payload })) || ({} as DVD);
   };
 }
 

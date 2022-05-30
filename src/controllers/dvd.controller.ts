@@ -14,6 +14,13 @@ class DvdController {
 
     return res.json({ dvds: dvdsRes }).status(200);
   };
+
+  BUY_DVDS = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const dvdsRes = await dvdService.cart_dvds(id);
+
+    return res.json({ dvds: dvdsRes }).status(200);
+  };
 }
 
 export default new DvdController();

@@ -1,3 +1,4 @@
+import { DVD } from "../entities/dvd.entity";
 import { User } from "../entities/user.entity";
 
 declare global {
@@ -5,6 +6,7 @@ declare global {
     interface Request {
       validated: User  ;
       decoded: User;
+      dvd: DVD;
     }
   }
 }

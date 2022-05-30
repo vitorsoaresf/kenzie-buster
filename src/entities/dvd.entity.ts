@@ -21,7 +21,7 @@ export class DVD {
   @Column()
   duration: string;
 
-  @ManyToOne((type) => Cart, (cart) => cart.dvds)
+  @OneToOne((type) => Cart, (cart) => cart.dvd)
   cart: Cart;
 
   @OneToOne((type) => Stock, {

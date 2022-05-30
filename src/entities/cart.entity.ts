@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn, OneToMany } from "typeorm";
+import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn, OneToMany, ManyToOne } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { DVD } from "./dvd.entity";
 import { User } from "./user.entity";
@@ -20,11 +20,11 @@ export class Cart {
   @JoinColumn()
   user: User;
 
-  @OneToMany((type) => DVD,dvd => dvd.cart, {
+  @OneToOne((type) => DVD,dvd => dvd.cart, {
     eager: true,
   })
   @JoinColumn()
-  dvds: DVD[];
+  dvd: DVD;
 
   constructor() {
     if (!this.id) {

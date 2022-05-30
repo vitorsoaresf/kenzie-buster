@@ -5,7 +5,7 @@ import { Stock } from "../entities/stock.entity";
 import { IDvd } from "../interfaces/dvd.interface";
 import dvdRepository from "../repositories/dvd.repository";
 import stockRepository from "../repositories/stock.repository";
-import { dvdSerializedCreateSchema } from "../schemas/dvd/dvdCreate.schema";
+import { dvdsLsSchema } from "../schemas/dvd/dvdCreate.schema";
 
 dotenv.config();
 
@@ -28,6 +28,7 @@ class DvdService {
         newDvd.stock = await stockRepository.save(newStock);
         response.push(await dvdRepository.save(newDvd));
       } else {
+        response.push({ error: "Dvd already exists!" });
       }
     }
     return response;
@@ -36,6 +37,10 @@ class DvdService {
   get_all_dvds = async () => {
     const dvds = await dvdRepository.all();
     return dvds;
+  };
+
+  cart_dvds = async (id: string) => {
+    const dvds = await dvdRepository.findOne({ id });
   };
 }
 

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { userController } from "../controllers";
 import verifyIsAdmin from "../middlewares/verifyIsAdmin.middleware";
-import validadeUserSchema from "../middlewares/validateUserSchema.middleware";
+import validadeSchema from "../middlewares/validateSchema.middleware";
 // import isAdmin from "../middlewares/isAdmin.middleware";
 import validateToken from "../middlewares/validateToken.middleware";
 import verifyUserExists from "../middlewares/verifyUserExists.middleware";
@@ -22,13 +22,13 @@ const userRouter = Router();
 // );
 userRouter.post(
   "/login",
-  validadeUserSchema(userLoginSchema),
+  validadeSchema(userLoginSchema),
   getByIdOr404,
   userController.LOGIN_USER
 );
 userRouter.post(
   "/register",
-  validadeUserSchema(userCreateSchema),
+  validadeSchema(userCreateSchema),
   verifyUserExists,
   validateTokenIsAdmin,
   userController.POST_CREATE_USER

@@ -1,10 +1,14 @@
 import * as yup from "yup";
 
-const dvdCreateSchema = yup.object().shape({
-  name: yup.string().required(),
-  duration: yup.string().required(),
-  quantity: yup.number().required(),
-  price : yup.number().required(),
+const dvdsLsSchema = yup.object().shape({
+  dvds: yup.array().of(
+    yup.object().shape({
+      name: yup.string().required(),
+      duration: yup.string().required(),
+      quantity: yup.number().required(),
+      price: yup.number().required(),
+    })
+  ),
 });
 
 const dvdSerializedCreateSchema = yup.object().shape({
@@ -12,7 +16,7 @@ const dvdSerializedCreateSchema = yup.object().shape({
   name: yup.string().required(),
   duration: yup.string().required(),
   quantity: yup.number().required(),
-  price : yup.number().required(),
+  price: yup.number().required(),
 });
 
-export { dvdCreateSchema, dvdSerializedCreateSchema };
+export { dvdSerializedCreateSchema, dvdsLsSchema };

@@ -115,6 +115,11 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/is-uuid@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/is-uuid/-/is-uuid-1.0.0.tgz#6d359d80c5a9f8f7ef5a23c685b14ffcb96d622c"
+  integrity sha512-FaiSi54J9lp09vZqlgHcbJaeq/G4h0dHqCxOXqCWzzjCaS2yVIx6xjZs7rnkTKu+C6xec+Ud1xtaONqaPHxApQ==
+
 "@types/jsonwebtoken@^8.5.8":
   version "8.5.8"
   resolved "https://registry.yarnpkg.com/@types/jsonwebtoken/-/jsonwebtoken-8.5.8.tgz#01b39711eb844777b7af1d1f2b4cf22fda1c0c44"
@@ -804,6 +809,11 @@ is-number@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
+
+is-uuid@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/is-uuid/-/is-uuid-1.0.2.tgz#ad1898ddf154947c25c8e54966f48604e9caecc4"
+  integrity sha1-rRiY3fFUlHwlyOVJZvSGBOnK7MQ=
 
 js-yaml@^4.1.0:
   version "4.1.0"

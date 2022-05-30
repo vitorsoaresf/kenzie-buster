@@ -20,12 +20,12 @@ const validateTokenIsAdmin = async (
       process.env.SECRET_KEY,
       (err: VerifyErrors, decoded: string | JwtPayload) => {
         if (err) {
-          return {
+          return res.status(401).json({
             error: {
               name: "JsonWebTokenError",
               message: "jwt malformed",
             },
-          };
+          });
         }
         // @ts-ignore
         if (decoded["isAdmin"]) {
