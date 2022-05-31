@@ -1,6 +1,14 @@
 import { compare } from "bcrypt";
-import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  OneToOne,
+  JoinColumn,
+  OneToMany,
+} from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Cart } from "./cart.entity";
 
 @Entity("users")
 export class User {
@@ -8,7 +16,7 @@ export class User {
   readonly id: string;
 
   @Column()
-  name: string
+  name: string;
 
   @Column({ unique: true })
   email: string;
@@ -16,7 +24,7 @@ export class User {
   @Column()
   password: string;
 
-  @Column({default: false})
+  @Column({ default: false })
   isAdmin: boolean;
 
   comparePwd = async (pwdString: string): Promise<boolean> => {

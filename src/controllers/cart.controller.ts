@@ -21,7 +21,7 @@ class CartController {
   CART_PAY = async (req: Request, res: Response) => {
     const resCart = await cartService.pay_cart(req.decoded);
 
-    return res.status(200).json(resCart);
+    return res.status(200).json({ cart: resCart });
   };
 
   ALL_CARTS = async (req: Request, res: Response) => {
