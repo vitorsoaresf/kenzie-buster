@@ -14,7 +14,7 @@ export class Cart {
   @Column('float')
   total: number;
 
-  @OneToOne((type) => User, {
+  @ManyToOne((type) => User, {
     eager: true,
   })
   @JoinColumn()
