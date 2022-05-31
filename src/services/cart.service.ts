@@ -23,6 +23,18 @@ class CartService {
 
     return resCart;
   };
+
+  pay_cart = async (user: User) => {
+    const payCart = await cartRepository.updateCart(user);
+
+    return payCart;
+  };
+
+  ALL_CARTS = async () => {
+    const carts = await cartRepository.all();
+
+    return carts;
+  };
 }
 
 export default new CartService();

@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { cartRepository } from "../repositories";
 import { cartService } from "../services";
 
 class CartController {
@@ -14,7 +15,13 @@ class CartController {
     }
     const cartRes = await cartService.create_cart(dvd, decoded, quantity);
 
-    return res.json(cartRes).status(201);
+    return res.status(200).json(cartRes);
+  };
+
+  CART_PAY = async (req: Request, res: Response) => {
+    const resCart = await cartService.pay_cart(req.decoded);
+
+    return res.status(200).json(resCart);
   };
 }
 

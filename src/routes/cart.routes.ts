@@ -14,21 +14,12 @@ import getByIdOr404Dvd from "../middlewares/dvd/getByIdOr404Dvd.middleware";
 import { cartSchema } from "../schemas/cart/cartCreate.schema";
 import validadeCartSchema from "../middlewares/cart/validateCartSchema.middleware";
 
-const dvdRouter = Router();
+const cartRouter = Router();
 
-dvdRouter.post(
-  "/register",
-  validateTokenIsAdminDvd,
-  dvdController.POST_CREATE_DVD
-);
-
-dvdRouter.get("", dvdController.GET_DVDS);
-
-dvdRouter.post(
-  "/cart/:id",
-  validadeCartSchema(cartSchema),
+cartRouter.post(
+  "/pay",
   validateToken,
-  cartController.CART_DVDS
+  cartController.CART_PAY
 );
 
-export default dvdRouter;
+export default cartRouter;
