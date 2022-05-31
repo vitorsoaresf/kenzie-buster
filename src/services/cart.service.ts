@@ -30,7 +30,7 @@ class CartService {
     return payCart;
   };
 
-  ALL_CARTS = async () => {
+  all_carts = async () => {
     const carts = await cartRepository.all();
 
     return carts;

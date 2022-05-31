@@ -28,6 +28,7 @@ dvdRouter.post(
   "/cart/:id",
   validadeCartSchema(cartSchema),
   validateToken,
+  getByIdOr404Dvd,
   cartController.CART_DVDS
 );
 
