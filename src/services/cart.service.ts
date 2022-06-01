@@ -15,7 +15,6 @@ class CartService {
     cart.total = quantity * dvd.stock.price;
     cart.user = user;
 
-    dvd.stock.quantity -= quantity;
     await stockRepository.updateStock(dvd.stock);
 
     cart.dvd = dvd;

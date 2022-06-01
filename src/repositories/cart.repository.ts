@@ -3,6 +3,7 @@ import { AppDataSource } from "../data-source";
 import { Cart } from "../entities/cart.entity";
 import { User } from "../entities/user.entity";
 import dvdRepository from "./dvd.repository";
+import stockRepository from "./stock.repository";
 
 interface ICartRepo {
   save: (cart: Partial<Cart>) => Promise<Cart>;
@@ -32,15 +33,18 @@ class CartRepo implements ICartRepo {
     const res = [];
 
     for (let i = 0; i < findCarts.length; i++) {
-      if (findCarts[i]) {
+      if (findCarts[i].paid) {
         res.push({ message: "It has been paid" });
       } else {
         findCarts[i].paid = true;
-        findCarts[i].dvd.id;
 
         const findDvd = await dvdRepository.findOne({
           id: findCarts[i].dvd.id,
         });
+
+        findDvd.stock.quantity -=
+          findCarts[i].total / findCarts[i].dvd.stock.price;
+        stockRepository.updateStock(findDvd.stock);
 
         let update: Cart;
         await this.ormRepo

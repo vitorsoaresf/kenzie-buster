@@ -6,6 +6,7 @@ interface IDvdRepo {
   save: (dvd: Partial<DVD>) => Promise<DVD>;
   all: () => Promise<DVD[]>;
   findOne: (payload: object) => Promise<DVD>;
+  updateDvd: (payload: object) => Promise<DVD>;
 }
 
 class DvdRepo implements IDvdRepo {
@@ -20,6 +21,22 @@ class DvdRepo implements IDvdRepo {
 
   findOne = async (payload: object) => {
     return (await this.ormRepo.findOneBy({ ...payload })) || ({} as DVD);
+  };
+
+  updateDvd = async (payload: object) => {
+    let update: DVD;
+    await this.ormRepo
+      .createQueryBuilder()
+      .update(DVD)
+      .set({ ...payload })
+      .where("id = :id", { ...payload })
+      .returning("*")
+      .execute()
+      .then((response) => {
+        update = { ...response.raw[0] };
+        return response.raw[0];
+      });
+    return update;
   };
 }
 

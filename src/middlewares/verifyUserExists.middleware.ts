@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { User } from "../entities/user.entity";
-import { ErrorHandler } from "../errors";
 import { userRepository } from "../repositories";
 
 const verifyUserExists = async (

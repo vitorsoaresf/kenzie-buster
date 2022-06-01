@@ -1,7 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import { JwtPayload, verify, VerifyErrors } from "jsonwebtoken";
-import { User } from "../entities/user.entity";
-import { ErrorHandler } from "../errors";
 
 const verifyIsAdmin = async (
   req: Request,
