@@ -25,7 +25,7 @@ dvdRouter.post(
 dvdRouter.get("", dvdController.GET_DVDS);
 
 dvdRouter.post(
-  "/cart/:id",
+  "/buy/:id",
   validadeCartSchema(cartSchema),
   validateToken,
   getByIdOr404Dvd,
